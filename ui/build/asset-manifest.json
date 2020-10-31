@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/static/css/main.2933b2fe.chunk.css",
+    "main.js": "/static/js/main.676e305f.chunk.js",
+    "main.js.map": "/static/js/main.676e305f.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.7dd0bbc7.js",
+    "runtime-main.js.map": "/static/js/runtime-main.7dd0bbc7.js.map",
+    "static/js/2.e6812302.chunk.js": "/static/js/2.e6812302.chunk.js",
+    "static/js/2.e6812302.chunk.js.map": "/static/js/2.e6812302.chunk.js.map",
+    "index.html": "/index.html",
+    "precache-manifest.eba21c4944be4d87aea9501f028a57b6.js": "/precache-manifest.eba21c4944be4d87aea9501f028a57b6.js",
+    "service-worker.js": "/service-worker.js",
+    "static/css/main.2933b2fe.chunk.css.map": "/static/css/main.2933b2fe.chunk.css.map",
+    "static/js/2.e6812302.chunk.js.LICENSE.txt": "/static/js/2.e6812302.chunk.js.LICENSE.txt",
+    "static/media/img-mulher.png": "/static/media/img-mulher.856e017c.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.7dd0bbc7.js",
+    "static/js/2.e6812302.chunk.js",
+    "static/css/main.2933b2fe.chunk.css",
+    "static/js/main.676e305f.chunk.js"
+  ]
+}
