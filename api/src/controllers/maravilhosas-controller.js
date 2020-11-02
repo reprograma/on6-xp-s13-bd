@@ -1,54 +1,84 @@
-const model = require('../models/maravilhosas-models')
+const maravilhosaTeste = require('../models/maravilhosaSchema')
 
 const getMaravilhosas =  (req,res) => {
-    const { error, data } = model.selectAllData()
-    if (error === null){
-        res.status(200).json(data);
-    }else{
-        res.status(400).json({"message": error.message});
-    }
+    console.log(req.url)
+    maravilhosaTeste.maravilhosaCollection.find((error, maravilhosa) =>{
+        if(error){
+            return res.status(500).send(error)
+        } else{
+            return res.status(200).send(maravilhosa)
+        }
+    })
 }
-
 //getMaravilhosaById
 const getMaravilhosaById =  (req,res) => {
-    const { error, data } = model.selectDataById(req.params.id)
-    if (error === null){
-        res.status(200).json(data);
-    }else{
-        res.status(404).json({"message": error.message});
-    }
+   const idParam = req.params.id
+   maravilhosaTeste.maravilhosaCollection.findById(idParam, (error, maravilhosa) =>{
+       if(error){
+           return res.status(500).send(error)
+       } else {
+           if(maravilhosa){
+               return res.status(200).send(maravilhosa)
+           } else{
+               return res.status(404).send("Maravilhosa não encontrada :( ")
+           }
+       }
+   }) 
 }
 
 //addMaravilhosa 
 const addMaravilhosa = (req,res) => {
+    console.log(req.url)
+    const maravilhosaBody = req.body
+    const maravilhosa = new maravilhosaTeste.maravilhosaCollection(maravilhosaBody)
 
-    const {error} = model.insertData(req.body)
-    if(error === null) {
-        res.status(201).json("Registro adicionado com sucesso");
-    } else {
-        res.status(400).json({"message": error.message})
-    }
+    maravilhosa.save((error) =>{
+        if(error){
+            return res.status(400).send(error)
+        } else {
+            return res.status(201).send(maravilhosa)
+        }
+    })
 }
+
 //updateMaravilhosa 
 const updateMaravilhosa = (req, res) => {
-    const {error, data} = model.updateData(req.params.id, req.body  )
-     if(error=== null) {
-         res.status(201).send(data)
-    } else {
-        res.status(404).json({"message": error.message})
-    }
-    
+    const idParam = req.params.id
+    const maravilhosaBody = req.body
+    const novo = {new: true} //quando o documento for inserido vai retornar o valor modificado e não o original, que é o que acontece por padrão
+
+    maravilhosaTeste.maravilhosaCollection.findByIdAndUpdate(
+        idParam,
+        {$set:{maravilhosaBody}}, // adicionei o $set pra mostrar como ficaria, para o caso de não passar valores para todos os atributos novamente.
+        novo,
+        (error, maravilhosa) =>{
+            if(error){
+                return res.status(500).send(error)
+            } else if (maravilhosa) {
+                return res.status(200).send(maravilhosa)
+            } else{
+                return res.sendStatus(404)
+            }
+        }
+    )    
 }
 
 //deleteMaravilhosa
 const deleteMaravilhosa = (req, res) => {
-    const {error} = model.deleteData(req.params.id)
-    if(error===null) {
-        res.status(204).send("Registro removido com sucesso.")
-    } else {
-        res.status(404).json({"message": error.message})
-    }
-}
+    const idParam = req.params.id
+    maravilhosaTeste.maravilhosaCollection.findByIdAndDelete(idParam, (error, maravilhosa) =>
+    {
+        if(error){
+            return res.status(500).send(error)
+            } else{
+                if(maravilhosa){
+                    return res.status(200).send("A maravilhosa foi apagada")
+                }else {
+                    return res.sendStatus(404)
+                }
+            }
+        })
+    } 
 
 module.exports = {
     getMaravilhosas, 

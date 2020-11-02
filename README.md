@@ -8,6 +8,21 @@ Essa semana vamos integrar a API M de Maravilhosa, trocando o model estático po
 ## Links úteis
 
 - [Documentação Mongoose](https://mongoosejs.com/docs/)
+- [MongoDB Atlas](https://www.mongodb.com/cloud/atlas)
+
+## Mudanças que fizemos
+- Importamos nosso arquivo 'data.json' para a collection 'maravilhosa';
+- Deletamos a pasta data
+- Deletamos o arquivo 'maravilhosas-models.js'
+
+>(O front não estava reconhecendo nossas requisições, por isso testamos no Postman)
+
+## Exercício para o lar
+Escolher alguma API desenvolvida durante o curso, criar um banco de dados e fazer a integração. Lembre-se de:
+- Criar um repository para realizar a conexão com o Mongo
+- Criar o Schema
+- Alterar as funções no controller
+- Inserir a chamada do 'repository.js' no 'App.js'
 
 ----
 
